@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8923:8923"
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434
+    volumes:
+      - backend-data:/app/data
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE=http://localhost:8923
+    ports:
+      - "5699:5699"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend-data:
