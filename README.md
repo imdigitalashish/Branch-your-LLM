@@ -59,16 +59,6 @@ http://localhost:5699
 | Backend  | 8923 |
 | Frontend | 5699 |
 
-## Architecture
-
-```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│    Frontend     │────▶│    Backend      │────▶│     Ollama      │
-│   (React/Vite)  │     │   (FastAPI)     │     │   (LLM Server)  │
-│   Port: 5699    │     │   Port: 8923    │     │   Port: 11434   │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
-```
-
 ## Development
 
 ### Running without Docker
